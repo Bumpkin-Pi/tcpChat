@@ -1,0 +1,18 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Simple TCP chatbox",
+  "main": "Client/index.js",
+  "scripts": {
+    "client": "echo \"Starting client\" && node Client/index.js",
+    "server": "echo \"Starting server\" && node Server/index.js"
+  },
+  "author": "Bumpkin-pi",
+  "license": "ISC",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "chalk": "^4.1.2",
+    "crypto": "^1.0.1",
+    "sleep": "^6.3.0"
+  }
+}
