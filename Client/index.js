@@ -33,7 +33,7 @@ let inputBar = blessed.textbox({
 
 
 
-let name = process.argv[2] || "User";
+let name = process.argv[4] || "";
 console.log(name)
 
 screen.append(body);
@@ -56,8 +56,8 @@ screen.key('enter', (ch, key) => {
 
 
 // The port number and hostname of the server.
-const port = 25567;
-const host = '127.0.0.1';
+const port = process.argv[3];
+const host = process.argv[2];
 const timeout = 10;
 
 // Create a new TCP client.
@@ -70,7 +70,10 @@ setTimeout(function() {
         // If there is no error, the server has accepted the request and created a new
         // socket dedicated to us.
         log('TCP connection established with the server.\n\n');
-        client.write(`/name ${name}`);
+        if (name != ""){
+            client.write(`/name ${name}`);
+        }
+
 
         // The client can now send data to the server by writing to its socket.
         // client.write('Hello, server.');

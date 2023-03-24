@@ -1,5 +1,5 @@
-const HOST = '127.0.0.1';
-const PORT = 25567;
+const port = process.argv[2];
+// const address = process.argv[2];
 const connectedSockets = new Set();
 
 const net = require("net");
@@ -16,12 +16,12 @@ connectedSockets.broadcast = function(data, except) {
     }
 }
 
-const server = net.createServer().listen(PORT, HOST);
+const server = net.createServer().listen(port);
 server.on('connection', function(sock){
     sock.id = `${sock.remoteAddress}:${sock.remotePort}`;
     connectedSockets.add(sock);
     console.log(`Client ${sock.id} connected`);
-    for (message in history){
+    for (let message in history){
         sock.write(history[message]+"\n");
     }
 
@@ -59,4 +59,4 @@ server.on('connection', function(sock){
     });
 });
 
-console.log(`Server listening on ${HOST}:${PORT}`);
+console.log(`Server listening on ${port}`);
